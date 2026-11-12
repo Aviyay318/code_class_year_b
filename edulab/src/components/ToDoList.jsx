@@ -4,50 +4,61 @@ import "./TodoList.css"
 
 function ToDoList(){
     const [task,setTask]=useState("")
-    const [tasks,setTasks]=useState([5,6])
-
+    const [tasks,setTasks]=useState([])
+    const [index,setIndex]=useState(null)
 
     const addTask=()=>{
-
+        if (index===null){
+            setTasks([...tasks,task])
+        }else{
+            const tempTasks =[...tasks];
+            tempTasks[index] = task
+            setTasks(tempTasks)
+            setIndex(null)
+        }
+        setTask("")
     }
 
-    // const print=()=>{
-    // return(
-    //     <div>hi</div>
-    // )
-    // }
+    const editTask=(i)=>{
+        setIndex(i)
+        setTask(tasks[i])
+    }
+
+    const deleteTask=(iToDelete)=>{
+        setTasks(tasks.filter((task,i)=>i!==iToDelete))
+    }
 
     return(
         <div>
-            <h1>ToDoList</h1>
+            <h1>To Do List</h1>
             <input value={task}
+                   placeholder={"enter task"}
                    onChange={(e)=>setTask(e.target.value)}
             />
-            <button onClick={addTask}>add</button>
-            {/*{print()}*/}
+            <button onClick={addTask}>{index===null?"add":"edit"}</button>
+
             <h2>Task to do:</h2>
-            {/*<p>אם כן:</p>*/}
-            {/*{*/}
-            {/*    tasks.length>0&&<p>yes</p>*/}
-            {/*}*/}
-            {/*<p>מה קורה שכן מה קורה שלא</p>*/}
+
             {
                 tasks.length>0?
-                    <div>
+                    <ol>
                         {
                             tasks.map((task,i)=>{
                                 return(
-                                    <p key={i}>
+                                    <li key={i}>
                                         {i+1} )  {task}
-                                    </p>
+                                        <button onClick={()=>editTask(i)}>edit</button>
+                                        <button onClick={()=>deleteTask(i)}>delete</button>
+                                    </li>
                                 )
                             })
                         }
-                    </div>
+                    </ol>
                     :
                     <div>אין משימות ממתינות </div>
 
             }
+
         </div>
 
     )
