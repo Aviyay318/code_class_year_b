@@ -35,7 +35,7 @@ function ToDoList(){
                    placeholder={"enter task"}
                    onChange={(e)=>setTask(e.target.value)}
             />
-            <button onClick={addTask}>{index===null?"add":"edit"}</button>
+            <button disabled={task.trim()===""} onClick={addTask}>{index===null?"add":"edit"}</button>
 
             <h2>Task to do:</h2>
 
