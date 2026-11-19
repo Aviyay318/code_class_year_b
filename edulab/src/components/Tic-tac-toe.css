@@ -1,0 +1,22 @@
+table {
+    border-collapse: collapse;
+}
+
+td {
+    padding: 0;
+    border: 2px solid #333;
+}
+
+td button {
+    display: block;
+    width: 80px;
+    height: 80px;
+    border: 0;
+    background-color: white;
+    font-size: 32px;
+    cursor: pointer;
+}
+
+td button:hover {
+    background-color: #f0f0f0;
+}
