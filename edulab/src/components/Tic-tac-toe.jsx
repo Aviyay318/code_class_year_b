@@ -80,11 +80,11 @@ const isFull=()=>{
             <h1>Tic Tac Toe</h1>
 
             {winner===null?
-            <h2>
+            <>
                 {
                     isFull()&&<h2>is draw</h2>
                 }
-            </h2>
+            </>
             :
             <h2>The winner is: {winner}</h2>
             }
